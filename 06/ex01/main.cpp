@@ -6,11 +6,12 @@
 /*   By: soubella <soubella@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 17:51:05 by soubella          #+#    #+#             */
-/*   Updated: 2022/12/06 18:26:31 by soubella         ###   ########.fr       */
+/*   Updated: 2023/01/05 15:58:52 by soubella         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cstdint>
+#include <iostream>
 
 #include "Data.hpp"
 
@@ -24,10 +25,12 @@ Data* deserialize(uintptr_t raw) {
 
 int main(void) {
 	
-	Data* data = new Data();
+	Data* data = new Data("secret", 1564894894);
 	
 	uintptr_t ptr = serialize(data);
 	Data*     dt  = deserialize(ptr);
+	
+	std::cout << "[" << dt->key << " : " << dt->value << "]" << std::endl;
 	
 	delete dt;
 

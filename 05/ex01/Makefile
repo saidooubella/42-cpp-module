@@ -3,9 +3,9 @@ NAME=Bureaucrat
 FLAGS=-Wall -Wextra -Werror -std=c++98 -g
 CC=c++
 
-INCLUDES=Bureaucrat.hpp
+INCLUDES=Bureaucrat.hpp Form.hpp
 
-SRCS=Bureaucrat.cpp main.cpp
+SRCS=Bureaucrat.cpp Form.cpp main.cpp
 
 OBJS=$(SRCS:.cpp=.o)
 

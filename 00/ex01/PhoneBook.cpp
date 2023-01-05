@@ -6,7 +6,7 @@
 /*   By: soubella <soubella@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 13:13:33 by soubella          #+#    #+#             */
-/*   Updated: 2022/12/08 17:44:14 by soubella         ###   ########.fr       */
+/*   Updated: 2022/12/31 16:19:59 by soubella         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ PhoneBook::PhoneBook() {
 }
 
 void PhoneBook::add(Contact contact) {
+	contacts[cursor] = contact;
 	cursor = (cursor + 1) % 8;
-	contacts[cursor - 1] = contact;
 	if (size < 8) size++;
 }
 

@@ -6,7 +6,7 @@
 /*   By: soubella <soubella@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 20:51:28 by soubella          #+#    #+#             */
-/*   Updated: 2022/12/03 21:47:21 by soubella         ###   ########.fr       */
+/*   Updated: 2023/01/04 13:24:16 by soubella         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,8 @@ Cure::~Cure() {
 	std::cout << "Cure destructor called" << std::endl;
 }
 
-Cure::Cure() {
+Cure::Cure() : AMateria("cure") {
 	std::cout << "Cure default constructor called" << std::endl;
-	this->type = "cure";
 }
 
 Cure::Cure(const Cure &value) {

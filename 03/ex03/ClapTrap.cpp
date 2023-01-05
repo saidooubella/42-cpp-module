@@ -6,7 +6,7 @@
 /*   By: soubella <soubella@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 13:11:17 by soubella          #+#    #+#             */
-/*   Updated: 2022/12/03 10:29:32 by soubella         ###   ########.fr       */
+/*   Updated: 2023/01/03 13:15:10 by soubella         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void ClapTrap::takeDamage(unsigned int amount) {
 void ClapTrap::beRepaired(unsigned int amount) {
 	if (energyPoints == 0)
 		return;
-	std::cout << "ClapTrap " << name << " took " << amount << " points of repaire!" << std::endl;
+	std::cout << "ClapTrap " << name << " earned " << amount << " points of repaire!" << std::endl;
 	hitPoints += amount;
 	energyPoints -= 1;
 }

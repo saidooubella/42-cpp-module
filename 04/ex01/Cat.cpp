@@ -6,7 +6,7 @@
 /*   By: soubella <soubella@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 17:44:48 by soubella          #+#    #+#             */
-/*   Updated: 2022/12/03 20:08:03 by soubella         ###   ########.fr       */
+/*   Updated: 2023/01/05 21:20:10 by soubella         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ Cat::Cat(const Cat &value) {
 
 Cat& Cat::operator =(const Cat &value) {
 	std::cout << "Cat assignment operator called" << std::endl;
+	delete this->brain;
 	this->brain = new Brain(*value.brain);
 	this->type = value.type;
 	return *this;

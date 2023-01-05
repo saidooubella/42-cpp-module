@@ -6,14 +6,12 @@
 /*   By: soubella <soubella@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 12:15:47 by soubella          #+#    #+#             */
-/*   Updated: 2022/11/29 19:15:47 by soubella         ###   ########.fr       */
+/*   Updated: 2023/01/01 12:02:45 by soubella         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include "Weapon.hpp"
-
-Weapon Weapon::defaultWeapon = Weapon();
 
 Weapon::Weapon() {
 	this->type = "";

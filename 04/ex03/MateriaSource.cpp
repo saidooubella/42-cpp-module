@@ -6,7 +6,7 @@
 /*   By: soubella <soubella@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 21:16:55 by soubella          #+#    #+#             */
-/*   Updated: 2022/12/04 18:43:16 by soubella         ###   ########.fr       */
+/*   Updated: 2023/01/04 13:31:36 by soubella         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void MateriaSource::learnMateria(AMateria* m) {
 	for (int i = 0; i < 4; i++) {
 		const AMateria *material = materials[i];
 		if (material == NULL) {
-			materials[i] = m;
+			materials[i] = m->clone();
 			return;
 		}
 	}

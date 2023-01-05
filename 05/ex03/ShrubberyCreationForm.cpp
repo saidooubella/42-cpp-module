@@ -6,7 +6,7 @@
 /*   By: soubella <soubella@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 14:44:24 by soubella          #+#    #+#             */
-/*   Updated: 2022/12/04 21:33:55 by soubella         ###   ########.fr       */
+/*   Updated: 2023/01/05 14:54:54 by soubella         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &value)
 
 ShrubberyCreationForm& ShrubberyCreationForm::operator =(const ShrubberyCreationForm &value) {
 	std::cout << "ShrubberyCreationForm assignment operator called" << std::endl;
-	(void) value;
+	this->setIsSigned(value.getIsSigned());
 	return *this;
 }
 

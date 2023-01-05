@@ -6,7 +6,7 @@
 /*   By: soubella <soubella@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 20:47:05 by soubella          #+#    #+#             */
-/*   Updated: 2022/12/03 21:47:34 by soubella         ###   ########.fr       */
+/*   Updated: 2023/01/04 13:24:22 by soubella         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,8 @@ Ice::~Ice() {
 	std::cout << "Ice default destructor called" << std::endl;
 }
 
-Ice::Ice() {
+Ice::Ice() : AMateria("ice") {
 	std::cout << "Ice default constructor called" << std::endl;
-	this->type = "ice";
 }
 
 Ice::Ice(const Ice &value) {

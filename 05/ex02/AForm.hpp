@@ -6,7 +6,7 @@
 /*   By: soubella <soubella@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 12:50:56 by soubella          #+#    #+#             */
-/*   Updated: 2022/12/04 17:53:16 by soubella         ###   ########.fr       */
+/*   Updated: 2023/01/05 14:51:34 by soubella         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ class Bureaucrat;
 class AForm {
 
 	private:
-		const int   requiredExecutionGrade;
-		const int   requiredSigningGrade;
-		bool        isSigned;
-		std::string name;
-		
+		const int			requiredExecutionGrade;
+		const int			requiredSigningGrade;
+		bool     			isSigned;
+		const std::string	name;
+
 	protected:
 		virtual void _execute(const Bureaucrat& executor) const = 0;
 
@@ -40,6 +40,7 @@ class AForm {
 		int getRequiredExecutionGrade() const;
 		int getRequiredSigningGrade() const;
 		std::string getName() const;
+		void setIsSigned(bool isSigned);
 		bool getIsSigned() const;
 
 	class GradeTooHighException : public std::exception {

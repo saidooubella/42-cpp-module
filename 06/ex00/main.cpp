@@ -6,7 +6,7 @@
 /*   By: soubella <soubella@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 10:42:35 by soubella          #+#    #+#             */
-/*   Updated: 2022/12/06 21:11:01 by soubella         ###   ########.fr       */
+/*   Updated: 2023/01/05 15:49:11 by soubella         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,7 @@
 #include <cmath>
 
 typedef enum {
-	NONE_DISPLAYABLE_CHAR,
-	DISPLAYABLE_CHAR,
+	CHAR,
 	INVALID_INPUT,
 	INTEGER,
 	DOUBLE,
@@ -38,7 +37,7 @@ ResolverResult resolveCharLiteral(std::string input) {
 		return INVALID_INPUT;
 	}
 
-	const char c = input[index++];
+	index++;
 
 	if (index >= input.length() || input[index] != '\'') {
 		return INVALID_INPUT;
@@ -47,7 +46,7 @@ ResolverResult resolveCharLiteral(std::string input) {
 	index++;
 
 	if (index == input.length()) {
-		return isprint(c) ? DISPLAYABLE_CHAR : NONE_DISPLAYABLE_CHAR;
+		return CHAR;
 	}
 
 	return INVALID_INPUT;
@@ -177,8 +176,7 @@ int main(int argc, char const *argv[]) {
 	ResolverResult result = resolveInput(input);
 
 	switch (result) {
-		case NONE_DISPLAYABLE_CHAR:
-		case DISPLAYABLE_CHAR: {
+		case CHAR: {
 			const char c = input[1];
 			print(c, static_cast<int>(c), static_cast<float>(c), static_cast<double>(c));
 			break;
@@ -205,10 +203,9 @@ int main(int argc, char const *argv[]) {
 			break;
 		}
 		case INVALID_INPUT: {
-			std::cout << "Invalid input. Possible syntax: '<char>' or [0-9]+(.[0-9]*(f)?)?." << std::endl;
+			std::cout << "Invalid input." << std::endl;
 			break;
 		}
 	}
-
 	return 0;
 }

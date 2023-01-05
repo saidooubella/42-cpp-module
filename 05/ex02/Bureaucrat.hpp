@@ -6,7 +6,7 @@
 /*   By: soubella <soubella@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 11:11:35 by soubella          #+#    #+#             */
-/*   Updated: 2022/12/04 20:27:32 by soubella         ###   ########.fr       */
+/*   Updated: 2023/01/05 12:45:24 by soubella         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,3 +47,5 @@ class Bureaucrat {
 			const char* what() const throw();
 	};
 };
+
+std::ostream& operator <<(std::ostream& os, const Bureaucrat& bureaucrat);

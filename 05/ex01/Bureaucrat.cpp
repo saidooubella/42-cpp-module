@@ -6,7 +6,7 @@
 /*   By: soubella <soubella@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 11:11:54 by soubella          #+#    #+#             */
-/*   Updated: 2022/12/08 17:48:55 by soubella         ###   ########.fr       */
+/*   Updated: 2023/01/05 14:13:15 by soubella         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,19 @@ Bureaucrat::Bureaucrat(const std::string name, int grade) : name(name) {
 	this->grade = grade;
 }
 
-Bureaucrat::Bureaucrat(const Bureaucrat &value) : name(value.name) {
+Bureaucrat::Bureaucrat(const Bureaucrat &value) : name(value.name), grade(value.grade) {
 	std::cout << "Bureaucrat copy constructor called" << std::endl;
-	grade = value.grade;
 }
 
 Bureaucrat& Bureaucrat::operator =(const Bureaucrat &value) {
 	std::cout << "Bureaucrat assignment operator called" << std::endl;
-	(void) value;
+	this->grade = value.getGrade();
 	return *this;
+}
+
+std::ostream& operator <<(std::ostream& os, const Bureaucrat& bureaucrat) {
+	os << bureaucrat.getName() << ", bureaucrat grade " << bureaucrat.getGrade();
+	return os;
 }
 
 const std::string Bureaucrat::getName() const {

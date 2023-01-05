@@ -6,7 +6,7 @@
 /*   By: soubella <soubella@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 12:50:56 by soubella          #+#    #+#             */
-/*   Updated: 2022/12/04 17:53:16 by soubella         ###   ########.fr       */
+/*   Updated: 2023/01/05 13:07:29 by soubella         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,15 @@
 
 #include "Bureaucrat.hpp"
 
+class Bureaucrat;
+
 class Form {
 
 	private:
-		const int   requiredExecutionGrade;
-		const int   requiredSigningGrade;
-		bool        isSigned;
-		std::string name;
+		const int   		requiredExecutionGrade;
+		const int   		requiredSigningGrade;
+		bool        		isSigned;
+		const std::string	name;
 
 	public:
 		Form();

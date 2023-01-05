@@ -6,7 +6,7 @@
 /*   By: soubella <soubella@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 14:10:07 by soubella          #+#    #+#             */
-/*   Updated: 2022/12/05 18:34:25 by soubella         ###   ########.fr       */
+/*   Updated: 2022/12/31 16:53:06 by soubella         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,27 +28,31 @@ std::string promptString(std::string prompt) {
 	std::string input;
 	while (string_is_blank(whole)) {
 		std::getline(std::cin, input);
+		if (std::cin.eof())
+			return "";
 		whole.append(input);
 	}
-	return (input);
+	return input;
 }
 
 ssize_t promptInteger(std::string prompt) {
 	std::string result = promptString(prompt);
+	if (std::cin.eof())
+		return -1;
 	ssize_t integer;
 	std::stringstream sstr(result);
 	sstr >> integer;
 	if (!sstr || !sstr.eof())
 		return -1;
-	return (integer);
+	return integer;
 }
 
 bool checkEOF() {
 	if (std::cin.eof()) {
 		std::cout << std::endl;
-		return (true);
+		return true;
 	}
-	return (false);
+	return false;
 }
 
 int main() {
@@ -69,6 +73,7 @@ int main() {
 		std::string command;
 
 		command = promptString("Type a command: ");
+		if (checkEOF()) break;
 		std::cout << '\n';
 
 		if (checkEOF()) break;
@@ -98,12 +103,12 @@ int main() {
 			phoneBook.print();
 			std::cout << '\n';
 			ssize_t index;
-			while (phoneBook.getSize() > 0) {
+			if (phoneBook.getSize() > 0) {
 				index = promptInteger(" - Enter an index: ");
 				if (checkEOF()) break;
 				std::cout << '\n';
-				if (phoneBook.printAt(index)) break;
-				std::cout << '\n';
+				if (phoneBook.printAt(index))
+					std::cout << '\n';
 			}
 		} else {
 			std::cout << "DID I MENTIONED ANY OF THAT (ノಠ益ಠ)ノ彡┻━┻!?\n";

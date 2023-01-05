@@ -6,7 +6,7 @@
 /*   By: soubella <soubella@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 17:45:11 by soubella          #+#    #+#             */
-/*   Updated: 2022/12/03 20:07:40 by soubella         ###   ########.fr       */
+/*   Updated: 2023/01/05 21:20:25 by soubella         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ Dog::Dog(const Dog &value) {
 
 Dog& Dog::operator =(const Dog &value) {
 	std::cout << "Dog assignment operator called" << std::endl;
+	delete this->brain;
 	this->brain = new Brain(*value.brain);
 	this->type = value.type;
 	return *this;

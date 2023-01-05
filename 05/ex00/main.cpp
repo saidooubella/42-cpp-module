@@ -6,7 +6,7 @@
 /*   By: soubella <soubella@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 11:33:04 by soubella          #+#    #+#             */
-/*   Updated: 2022/12/04 20:31:18 by soubella         ###   ########.fr       */
+/*   Updated: 2023/01/05 11:40:15 by soubella         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int main(void) {
 
 	try {
 		// Will throws
-		Bureaucrat bureaucrat("Dan", 1566987851);
+		Bureaucrat bureaucrat("Dan", 156);
 	} catch(const std::exception& e) {
 		std::cout << e.what() << '\n';
 	}
@@ -54,6 +54,8 @@ int main(void) {
 	}
 
 	bureaucrat = Bureaucrat("Dan", 150);
+	
+	std::cout << bureaucrat << '\n';
 
 	try {
 		// Will throws

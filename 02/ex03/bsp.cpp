@@ -6,7 +6,7 @@
 /*   By: soubella <soubella@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 10:51:26 by soubella          #+#    #+#             */
-/*   Updated: 2022/12/02 11:56:17 by soubella         ###   ########.fr       */
+/*   Updated: 2023/01/02 11:46:53 by soubella         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,5 @@ bool bsp(Point const a, Point const b, Point const c, Point const point) {
 
 	Fixed triangleArea = area(a, b, c);
 
-	return triangleAArea + triangleBArea + triangleCArea == triangleArea;
+	return (triangleAArea + triangleBArea + triangleCArea) == triangleArea;
 }

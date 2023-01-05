@@ -6,12 +6,12 @@
 /*   By: soubella <soubella@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 21:34:39 by soubella          #+#    #+#             */
-/*   Updated: 2022/12/06 10:59:32 by soubella         ###   ########.fr       */
+/*   Updated: 2022/12/31 16:49:01 by soubella         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
-#include <iomanip>
+#include <ctime>
 
 #include "Account.hpp"
 
@@ -112,5 +112,10 @@ void Account::displayAccountsInfos(void) {
 void Account::_displayTimestamp(void) {
     std::time_t time = std::time(NULL);
     std::tm localTime = *std::localtime(&time);
-    std::cout << std::put_time(&localTime, "[%Y%m%d_%H%M%S] ");
+	char date_string[100];
+	if (strftime(date_string, 100, "[%Y%m%d_%H%M%S] ", &localTime) == 0) {
+		std::cout << "Coudn't load the current time." << std::endl;
+		exit(1);
+	}
+    std::cout << date_string;
 }

@@ -6,7 +6,7 @@
 /*   By: soubella <soubella@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 11:11:35 by soubella          #+#    #+#             */
-/*   Updated: 2022/12/04 20:45:23 by soubella         ###   ########.fr       */
+/*   Updated: 2023/01/05 13:07:21 by soubella         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,12 @@
 
 #include <string>
 
+#include "Form.hpp"
+
+class Form;
+
 class Bureaucrat {
-	
+
 	private:
 		const std::string name;
 		int               grade;
@@ -42,3 +46,5 @@ class Bureaucrat {
 			const char* what() const throw();
 	};
 };
+
+std::ostream& operator <<(std::ostream& os, const Bureaucrat& bureaucrat);

@@ -6,7 +6,7 @@
 /*   By: soubella <soubella@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 12:51:08 by soubella          #+#    #+#             */
-/*   Updated: 2022/12/04 21:23:12 by soubella         ###   ########.fr       */
+/*   Updated: 2023/01/05 14:52:21 by soubella         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,32 +26,28 @@ AForm::~AForm() {
 }
 
 AForm::AForm(std::string name, const int requiredSigningGrade, const int requiredExecutionGrade)
-	: requiredExecutionGrade(requiredExecutionGrade), requiredSigningGrade(requiredSigningGrade)
+	: requiredExecutionGrade(requiredExecutionGrade), requiredSigningGrade(requiredSigningGrade), name(name)
 {
 	std::cout << "AForm full constructor called" << std::endl;
 	assertValidGrade(requiredExecutionGrade);
 	assertValidGrade(requiredSigningGrade);
 	this->isSigned = false;
-	this->name = name;
 }
 
-AForm::AForm() : requiredExecutionGrade(1), requiredSigningGrade(1) {
+AForm::AForm() : requiredExecutionGrade(1), requiredSigningGrade(1), name("") {
 	std::cout << "AForm default constructor called" << std::endl;
 	isSigned = false;
-	name = "";
 }
 
 AForm::AForm(const AForm &value) : requiredExecutionGrade(value.requiredExecutionGrade),
-	requiredSigningGrade(value.requiredSigningGrade)
+	requiredSigningGrade(value.requiredSigningGrade), name(value.name)
 {
 	std::cout << "AForm copy constructor called" << std::endl;
-	isSigned = value.isSigned;
-	name = value.name;
 }
 
 AForm& AForm::operator =(const AForm &value) {
 	std::cout << "AForm assignment operator called" << std::endl;
-	(void) value;
+	this->isSigned = value.getIsSigned();
 	return *this;
 }
 
@@ -91,6 +87,10 @@ int AForm::getRequiredSigningGrade() const {
 
 std::string AForm::getName() const {
 	return name;
+}
+
+void AForm::setIsSigned(bool isSigned) {
+	this->isSigned = isSigned;
 }
 
 bool AForm::getIsSigned() const {

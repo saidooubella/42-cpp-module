@@ -6,7 +6,7 @@
 /*   By: soubella <soubella@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 17:34:09 by soubella          #+#    #+#             */
-/*   Updated: 2022/12/04 17:10:31 by soubella         ###   ########.fr       */
+/*   Updated: 2023/01/04 13:12:05 by soubella         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,6 @@ int main(void) {
 		animals[i] = new Dog();
 	}
 	
-	Dog a;
-	// {
-	// 	Dog b = a;
-	// }
-	Dog hh(a);
 	for (int i = 0; i < size; i++) {
 		delete animals[i];
 	}

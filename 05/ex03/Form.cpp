@@ -26,32 +26,28 @@ Form::~Form() {
 }
 
 Form::Form(std::string name, const int requiredSigningGrade, const int requiredExecutionGrade)
-	: requiredExecutionGrade(requiredExecutionGrade), requiredSigningGrade(requiredSigningGrade)
+	: requiredExecutionGrade(requiredExecutionGrade), requiredSigningGrade(requiredSigningGrade), name(name)
 {
 	std::cout << "Form full constructor called" << std::endl;
 	assertValidGrade(requiredExecutionGrade);
 	assertValidGrade(requiredSigningGrade);
 	this->isSigned = false;
-	this->name = name;
 }
 
-Form::Form() : requiredExecutionGrade(1), requiredSigningGrade(1) {
+Form::Form() : requiredExecutionGrade(1), requiredSigningGrade(1), name("") {
 	std::cout << "Form default constructor called" << std::endl;
 	isSigned = false;
-	name = "";
 }
 
 Form::Form(const Form &value) : requiredExecutionGrade(value.requiredExecutionGrade),
-	requiredSigningGrade(value.requiredSigningGrade)
+	requiredSigningGrade(value.requiredSigningGrade), name(value.name)
 {
 	std::cout << "Form copy constructor called" << std::endl;
-	isSigned = value.isSigned;
-	name = value.name;
 }
 
 Form& Form::operator =(const Form &value) {
 	std::cout << "Form assignment operator called" << std::endl;
-	(void) value;
+	this->isSigned = value.getIsSigned();
 	return *this;
 }
 
@@ -91,6 +87,10 @@ int Form::getRequiredSigningGrade() const {
 
 std::string Form::getName() const {
 	return name;
+}
+
+void Form::setIsSigned(bool isSigned) {
+	this->isSigned = isSigned;
 }
 
 bool Form::getIsSigned() const {

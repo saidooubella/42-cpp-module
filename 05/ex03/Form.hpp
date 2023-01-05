@@ -21,11 +21,11 @@ class Bureaucrat;
 class Form {
 
 	private:
-		const int   requiredExecutionGrade;
-		const int   requiredSigningGrade;
-		bool        isSigned;
-		std::string name;
-		
+		const int			requiredExecutionGrade;
+		const int			requiredSigningGrade;
+		bool     			isSigned;
+		const std::string	name;
+
 	protected:
 		virtual void _execute(const Bureaucrat& executor) const = 0;
 
@@ -40,6 +40,7 @@ class Form {
 		int getRequiredExecutionGrade() const;
 		int getRequiredSigningGrade() const;
 		std::string getName() const;
+		void setIsSigned(bool isSigned);
 		bool getIsSigned() const;
 
 	class GradeTooHighException : public std::exception {

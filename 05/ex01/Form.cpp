@@ -6,7 +6,7 @@
 /*   By: soubella <soubella@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 12:51:08 by soubella          #+#    #+#             */
-/*   Updated: 2022/12/04 21:23:09 by soubella         ###   ########.fr       */
+/*   Updated: 2023/01/05 14:14:48 by soubella         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,36 +26,33 @@ Form::~Form() {
 }
 
 Form::Form(std::string name, const int requiredSigningGrade, const int requiredExecutionGrade)
-	: requiredExecutionGrade(requiredExecutionGrade), requiredSigningGrade(requiredSigningGrade)
+	: requiredExecutionGrade(requiredExecutionGrade), requiredSigningGrade(requiredSigningGrade), name(name)
 {
 	std::cout << "Form full constructor called" << std::endl;
 	assertValidGrade(requiredExecutionGrade);
 	assertValidGrade(requiredSigningGrade);
 	isSigned = false;
-	name = name;
 }
 
-Form::Form() : requiredExecutionGrade(1), requiredSigningGrade(1) {
+Form::Form() : requiredExecutionGrade(1), requiredSigningGrade(1), name("") {
 	std::cout << "Form default constructor called" << std::endl;
 	isSigned = false;
-	name = "";
 }
 
 Form::Form(const Form &value) : requiredExecutionGrade(value.requiredExecutionGrade),
-	requiredSigningGrade(value.requiredSigningGrade)
+	requiredSigningGrade(value.requiredSigningGrade), name(value.name)
 {
 	std::cout << "Form copy constructor called" << std::endl;
-	isSigned = value.isSigned;
-	name = value.name;
 }
 
 Form& Form::operator =(const Form &value) {
 	std::cout << "Form assignment operator called" << std::endl;
+	this->isSigned = value.getIsSigned();
 	return *this;
 }
 
 std::ostream& operator <<(std::ostream& os, const Form& form) {
-	os << "Form {";
+	os << "Form {\n";
 	os << "    name: " << form.getName() << ",\n";
 	os << "    isSigned:" << form.getIsSigned() << ",\n";
 	os << "    executionGrade: " << form.getRequiredExecutionGrade() << ",\n";

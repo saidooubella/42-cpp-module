@@ -6,11 +6,12 @@
 /*   By: soubella <soubella@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 18:42:10 by soubella          #+#    #+#             */
-/*   Updated: 2022/12/06 20:53:59 by soubella         ###   ########.fr       */
+/*   Updated: 2023/01/05 16:04:54 by soubella         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
+#include <cstdlib>
 
 #include "Base.hpp"
 #include "A.hpp"
@@ -18,6 +19,12 @@
 #include "C.hpp"
 
 Base* generate(void) {
+	srand(time(NULL));
+	switch (rand() % 3) {
+		case 0: return new A();
+		case 1: return new B();
+		case 2: return new C();
+	}
 	return NULL;
 }
 
@@ -69,9 +76,11 @@ void identify(Base& p) {
 
 int main(void) {
 	
-	B a = B();
+	Base *a;
 	
+	a = generate();
 	identify(a);
+	delete a;
 
 	return 0;
 }

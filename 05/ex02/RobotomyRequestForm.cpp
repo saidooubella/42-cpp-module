@@ -6,7 +6,7 @@
 /*   By: soubella <soubella@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 15:06:23 by soubella          #+#    #+#             */
-/*   Updated: 2022/12/04 16:34:56 by soubella         ###   ########.fr       */
+/*   Updated: 2023/01/05 14:52:43 by soubella         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &value) : AFo
 
 RobotomyRequestForm& RobotomyRequestForm::operator =(const RobotomyRequestForm &value) {
 	std::cout << "RobotomyRequestForm assignment operator called" << std::endl;
-	(void) value;
+	this->setIsSigned(value.getIsSigned());
 	return *this;
 }
 
