@@ -6,25 +6,21 @@
 /*   By: soubella <soubella@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 14:53:09 by soubella          #+#    #+#             */
-/*   Updated: 2022/12/07 21:10:58 by soubella         ###   ########.fr       */
+/*   Updated: 2023/01/10 14:12:58 by soubella         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#include <stddef.h>
 #include <exception>
-
-typedef long long int64_t;
+#include <stddef.h>
+#include <vector>
 
 class Span {
     
     private:
-        int64_t *numbers;
-        size_t  capacity;
-        size_t  size;
-        size_t  shortestDistance;
-        size_t  longestDistance;
+        std::vector<int64_t> numbers;
+        size_t               limit;
 
     public:
         ~Span();
@@ -33,10 +29,24 @@ class Span {
         Span(const Span& value);
         Span& operator =(const Span& value);
         void addNumber(int64_t value);
-        size_t shortestSpan();
-        size_t longestSpan();
+        uint64_t shortestSpan();
+        uint64_t longestSpan();
+        template<typename T>
+        void addRange(T start, T end) {
+            if (start > end) {
+                throw IllegalArgumentException();
+            }
+            for (T i = start; i != end; i++) {
+                addNumber(*i);
+            }
+        }
 
     class OverflowException : std::exception {
+        public:
+            const char* what() const throw();
+    };
+
+    class IllegalArgumentException : std::exception {
         public:
             const char* what() const throw();
     };

@@ -6,7 +6,7 @@
 /*   By: soubella <soubella@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 18:42:10 by soubella          #+#    #+#             */
-/*   Updated: 2023/01/05 16:04:54 by soubella         ###   ########.fr       */
+/*   Updated: 2023/01/09 18:42:51 by soubella         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void identify(Base* p) {
 
 	B* b = dynamic_cast<B*>(p);
 	if (b != NULL) {
-		std::cout << "C" << std::endl;
+		std::cout << "B" << std::endl;
 		return;
 	}
 
@@ -76,11 +76,27 @@ void identify(Base& p) {
 
 int main(void) {
 	
-	Base *a;
-	
-	a = generate();
+	Base *a = generate();
 	identify(a);
 	delete a;
+	
+	{
+		A aRef;
+		Base &base = aRef;
+		identify(base);
+	}
+	
+	{
+		B aRef;
+		Base &base = aRef;
+		identify(base);
+	}
+	
+	{
+		C aRef;
+		Base &base = aRef;
+		identify(base);
+	}
 
 	return 0;
 }

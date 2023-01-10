@@ -6,33 +6,25 @@
 /*   By: soubella <soubella@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 14:59:59 by soubella          #+#    #+#             */
-/*   Updated: 2022/12/07 21:50:37 by soubella         ###   ########.fr       */
+/*   Updated: 2023/01/10 14:05:36 by soubella         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
+#include <limits>
 
 #include "Span.hpp"
 
 Span::~Span() {
     std::cout << "Span destructor called" << std::endl;
-    delete[] numbers;
 }
 
-Span::Span() {
+Span::Span() : limit(0) {
     std::cout << "Span default constructor called" << std::endl;
-    this->numbers = new int64_t[this->capacity = 0]();
-    this->shortestDistance = 18446744073709551615UL;
-    this->longestDistance = 0;
-    this->size = 0;
 }
 
-Span::Span(size_t capacity) {
+Span::Span(size_t capacity) : limit(capacity) {
     std::cout << "Span size constructor called" << std::endl;
-    this->numbers = new int64_t[this->capacity = capacity]();
-    this->shortestDistance = 18446744073709551615UL;
-    this->longestDistance = 0;
-    this->size = 0;
 }
 
 Span::Span(const Span &value) {
@@ -42,12 +34,9 @@ Span::Span(const Span &value) {
 
 Span& Span::operator =(const Span &value) {
     std::cout << "Span assignment operator called" << std::endl;
-    this->numbers = new int64_t[this->capacity = value.capacity]();
-    this->shortestDistance = value.shortestDistance;
-    this->longestDistance = value.longestDistance;
-    this->size = value.size;
-    for (size_t i = 0; i < value.size; i++) {
-        this->numbers[i] = value.numbers[i];
+    this->numbers.clear();
+    for (std::vector<int64_t>::const_iterator i = value.numbers.begin(); i < value.numbers.end(); i++) {
+        this->numbers.push_back(*i);
     }
     return *this;
 }
@@ -57,27 +46,38 @@ size_t abs_value(int64_t x) {
 }
 
 void Span::addNumber(int64_t value) {
-    if (size == capacity)
+    if (numbers.size() == limit)
         throw Span::OverflowException();
-    for (size_t i = 0; i < size; i++) {
-        size_t diff = abs_value(numbers[i] - value);
-        if (shortestDistance > diff)
-            shortestDistance = diff;
-        if (longestDistance < diff)
-            longestDistance = diff;
-    }
-    numbers[size++] = value;
+    numbers.push_back(value);
 }
 
-size_t Span::shortestSpan() {
-    if (size < 2)
+uint64_t Span::shortestSpan() {
+    if (numbers.size() < 2)
         throw NotEnoughElementsException();
+    uint64_t shortestDistance = std::numeric_limits<uint64_t>::max();
+    for (std::vector<int64_t>::iterator i = numbers.begin(); i < numbers.end(); i++) {
+        for (std::vector<int64_t>::iterator j = numbers.begin(); j < numbers.end(); j++) {
+            if (i == j) continue;
+            size_t diff = abs_value(*i - *j);
+            if (shortestDistance > diff)
+                shortestDistance = diff;
+        }
+    }
     return shortestDistance;
 }
 
-size_t Span::longestSpan() {
-    if (size < 2)
+uint64_t Span::longestSpan() {
+    if (numbers.size() < 2)
         throw NotEnoughElementsException();
+    uint64_t longestDistance = std::numeric_limits<uint64_t>::min();
+    for (std::vector<int64_t>::iterator i = numbers.begin(); i < numbers.end(); i++) {
+        for (std::vector<int64_t>::iterator j = numbers.begin(); j < numbers.end(); j++) {
+            if (i == j) continue;
+            size_t diff = abs_value(*i - *j);
+            if (longestDistance < diff)
+                longestDistance = diff;
+        }
+    }
     return longestDistance;
 }
 
@@ -87,4 +87,8 @@ const char* Span::OverflowException::what() const throw() {
 
 const char* Span::NotEnoughElementsException::what() const throw() {
     return "Span::NotEnoughElementsException: There isn't enough elements in the span";
+}
+
+const char* Span::IllegalArgumentException::what() const throw() {
+    return "Span::IllegalArgumentException: Invalid arguments";
 }

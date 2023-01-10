@@ -1,9 +1,7 @@
 
-NAME=ScalarTypesConverter
+NAME=convert
 FLAGS=-Wall -Wextra -Werror -std=c++98 -g
 CC=c++
-
-INCLUDES=
 
 SRCS=main.cpp
 
@@ -14,7 +12,7 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	$(CC) $(FLAGS) $^ -o $@
 
-%.o: %.cpp $(INCLUDES)
+%.o: %.cpp
 	$(CC) $(FLAGS) -c $< -o $@
 
 clean:

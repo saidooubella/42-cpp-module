@@ -1,9 +1,9 @@
 
 NAME=Array
-FLAGS=-Wall -Wextra -Werror -std=c++98
+FLAGS=-Wall -Wextra -Werror -std=c++98 -g
 CC=c++
 
-INCLUDES=Array.h
+INCLUDES=Array.hpp
 
 SRCS=main.cpp
 

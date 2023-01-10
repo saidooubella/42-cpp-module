@@ -6,7 +6,7 @@
 /*   By: soubella <soubella@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 13:21:02 by soubella          #+#    #+#             */
-/*   Updated: 2022/12/30 18:56:54 by soubella         ###   ########.fr       */
+/*   Updated: 2023/01/08 15:19:04 by soubella         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,11 @@
 
 #include <iostream>
 #include <stddef.h>
+#include <algorithm>
 
 template<typename T>
-bool easyfind(T container, int value) {
-	for (size_t i = 0; i < container.size(); i++) {
-		if (container[i] == value) {
-			std::cout << "Found!" << std::endl;
-			return true;
-		}
-	}
-	return false;
+typename T::iterator easyfind(T container, int value) {
+	typename T::iterator iter = std::find(container.begin(), container.end(), value);
+	if (iter == container.end()) throw std::exception();
+	return iter;
 }

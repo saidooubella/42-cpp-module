@@ -6,7 +6,7 @@
 /*   By: soubella <soubella@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 10:42:35 by soubella          #+#    #+#             */
-/*   Updated: 2023/01/05 15:49:11 by soubella         ###   ########.fr       */
+/*   Updated: 2023/01/09 14:13:06 by soubella         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,7 @@ const Constant constants[ConstantsCount] = {
 	{ .name = "nan", .type = DOUBLE },
 };
 
-ResolverResult resolveInput(std::string& input) {
+ResolverResult resolveInput(std::string input) {
 
 	if ((input.empty()) || (input.length() == 1 && (input[0] == '+' || input[0] == '-'))) {
 		return INVALID_INPUT;
@@ -133,8 +133,6 @@ ResolverResult resolveInput(std::string& input) {
 	for (size_t i = 0; i < ConstantsCount; i++) {
 		Constant constant = constants[i];
 		if (constant.name == input) {
-			if (constant.type == FLOAT)
-				input = input.substr(0, constant.name.length() - 1); 
 			return constant.type;
 		}
 	}
@@ -196,7 +194,7 @@ int main(int argc, char const *argv[]) {
 			break;
 		}
 		case FLOAT: {
-			std::stringstream sstr(input);
+			std::stringstream sstr(input.substr(0, input.length() - 1));
 			float decimal;
 			sstr >> decimal;
 			print(static_cast<char>(decimal), static_cast<int>(decimal), decimal, static_cast<double>(decimal));
